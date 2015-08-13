@@ -1,0 +1,18 @@
+# Build results
+bin/
+pkg/
+
+#Bat
+*.bat
+
+# Log
+*.log
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Mac crap
+.DS_Store
