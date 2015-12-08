@@ -14,10 +14,10 @@
 
 Порождающие паттерны отвечают за создание классов и объектов. Другими словами порождают классы и порождают объекты.
 
-* [Абстрактная фабрика (Abstract Factory)](Creational/AbstractFactory)
-* [Строитель (Builder)](Creational/Builder)
-* [Фабричный метод (Factory Method)](Creational/FactoryMethod) 
-* [Прототип (Prototype)](Creational/Prototype) 
-* [Одиночка (Singleton)](Creational/Singleton) 
+* [Абстрактная фабрика (Abstract Factory)](AbstractFactory)
+* [Строитель (Builder)](Builder)
+* [Фабричный метод (Factory Method)](FactoryMethod) 
+* [Прототип (Prototype)](Prototype) 
+* [Одиночка (Singleton)](Singleton) 
 
 ## -~- THE END -~-

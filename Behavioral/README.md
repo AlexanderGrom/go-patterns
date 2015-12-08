@@ -20,15 +20,15 @@
 
 Поведенческие паттерны описывают взаимодействие объектов и классов между собой и пытаются добиться наименьшей степени связанности компонентов системы друг с другом делая систему более гибкой.
 
-* [Цепочка ответственности (Chain Of Responsibilities)](Behavioral/ChainOfResponsibilities) 
-* [Команда (Command)](Behavioral/Command) 
-* [Итератор (Iterator)](Behavioral/Iterator) 
-* [Посредник (Mediator)](Behavioral/Mediator) 
-* [Хранитель (Memento)](Behavioral/Memento) 
-* [Наблюдатель (Observer)](Behavioral/Observer) 
-* [Состояние (State)](Behavioral/State) 
-* [Стратегия (Strategy)](Behavioral/Strategy) 
-* [Шаблонный метод (Template Method)](Behavioral/TemplateMethod) 
-* [Посетитель (Visitor)](Behavioral/Visitor) 
+* [Цепочка ответственности (Chain Of Responsibilities)](ChainOfResponsibilities) 
+* [Команда (Command)](Command) 
+* [Итератор (Iterator)](Iterator) 
+* [Посредник (Mediator)](Mediator) 
+* [Хранитель (Memento)](Memento) 
+* [Наблюдатель (Observer)](Observer) 
+* [Состояние (State)](State) 
+* [Стратегия (Strategy)](Strategy) 
+* [Шаблонный метод (Template Method)](TemplateMethod) 
+* [Посетитель (Visitor)](Visitor) 
 
 ## -~- THE END -~-

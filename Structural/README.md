@@ -20,12 +20,12 @@
 
 Все структурные паттерны отвечают за создание правильной структуры системы, в которой без труда смогут взаимодействовать между собой уже имеющиеся классы и объекты.
 
-* [Адаптер (Adapter)](Structural/Adapter) 
-* [Мост (Bridge)](Structural/Bridge) 
-* [Компоновщик (Composite)](Structural/Composite) 
-* [Декоратор (Decorator)](Structural/Decorator) 
-* [Фасад (Facade)](Structural/Facade) 
-* [Приспособленец (Flyweight)](Structural/Flyweight) 
-* [Заместитель (Proxy)](Structural/Proxy) 
+* [Адаптер (Adapter)](Adapter) 
+* [Мост (Bridge)](Bridge) 
+* [Компоновщик (Composite)](Composite) 
+* [Декоратор (Decorator)](Decorator) 
+* [Фасад (Facade)](Facade) 
+* [Приспособленец (Flyweight)](Flyweight) 
+* [Заместитель (Proxy)](Proxy) 
 
 ## -~- THE END -~-
