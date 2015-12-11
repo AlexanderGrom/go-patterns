@@ -10,7 +10,7 @@ type Subject interface {
 
 // Тип Proxy, реализует объект суррогата
 type Proxy struct {
-	realSubject *RealSubject
+	realSubject Subject
 }
 
 func (self *Proxy) Send() string {
