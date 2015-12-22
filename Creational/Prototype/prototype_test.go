@@ -9,8 +9,8 @@ func TestPrototype(t *testing.T) {
 	productA := ConcreteProductA{"A"}
 	productB := ConcreteProductA{"B"}
 	
-	cloneProductA := productA.clone();
-	cloneProductB := productB.clone();
+	cloneProductA := productA.Clone();
+	cloneProductB := productB.Clone();
 
 	if cloneProductA.GetName() != productA.GetName() {
 		t.Error("Expect name \"A\" to equal, but not equal.")
