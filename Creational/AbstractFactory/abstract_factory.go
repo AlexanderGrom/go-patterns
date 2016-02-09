@@ -18,7 +18,7 @@ type AbstractWater interface {
 
 // Тип AbstractBottle, описывает интерфейс бутылки.
 type AbstractBottle interface {
-	InteractWater(water *CocaColaWater) // Бутылка взаидодействует с напитком
+	InteractWater(water AbstractWater) // Бутылка взаидодействует с напитком
 	GetBottleVolume() float64           // Возможность получения объема бутылки
 	GetWaterVolume() float64            // Возможность получения объема напитка в бутылке
 }
