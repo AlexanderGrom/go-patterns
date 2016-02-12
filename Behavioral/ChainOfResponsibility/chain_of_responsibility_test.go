@@ -1,10 +1,10 @@
-package chain_of_responsibilities
+package chain_of_responsibility
 
 import (
 	"testing"
 )
 
-func TestChainOfResponsibilities(t *testing.T) {
+func TestChainOfResponsibility(t *testing.T) {
 
 	expect := "Im handler 2"
 	

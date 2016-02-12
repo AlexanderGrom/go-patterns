@@ -19,8 +19,7 @@ type Car struct {
 	engine Enginer
 }
 
-// Специфический Request.
-// Будем его адаптировать
+// Машина едет
 func (self *Car) Rase() string {
 	return self.engine.GetSound()
 }

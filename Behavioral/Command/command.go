@@ -53,7 +53,7 @@ func (self *Invoker) StoreCommand(command Command) {
 	self.commands = append(self.commands, command)
 }
 
-func (self *MacroCommand) UnStoreCommand() {
+func (self *Invoker) UnStoreCommand() {
 	if len(self.commands) != 0 {
 		self.commands = self.commands[:len(self.commands)-1]
 	}

@@ -52,5 +52,5 @@ func (self *BookShelf) Add(book *Book) {
 
 // Тип Book, реализует элемент коллекции
 type Book struct {
-	name string
+	Name string
 }

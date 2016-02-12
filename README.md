@@ -37,7 +37,7 @@ $ go get github.com/AlexanderGrom/go-patterns
 
 ### [Поведеньческие (Behavioral)](Behavioral)
 
-* [Цепочка ответственности (Chain Of Responsibilities)](Behavioral/ChainOfResponsibilities)
+* [Цепочка ответственности (Chain Of Responsibility)](Behavioral/ChainOfResponsibility)
 * [Команда (Command)](Behavioral/Command)
 * [Итератор (Iterator)](Behavioral/Iterator)
 * [Посредник (Mediator)](Behavioral/Mediator)

@@ -44,7 +44,6 @@ func (self *Directory) Print(prefix string) string {
 // Тип File, реализует лист дерева
 type File struct {
 	name   string
-	parent *Directory
 }
 
 // В лист нельзя добавить элемент

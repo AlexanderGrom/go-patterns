@@ -20,7 +20,7 @@
 
 Поведенческие паттерны описывают взаимодействие объектов и классов между собой и пытаются добиться наименьшей степени связанности компонентов системы друг с другом делая систему более гибкой.
 
-* [Цепочка ответственности (Chain Of Responsibilities)](ChainOfResponsibilities) 
+* [Цепочка ответственности (Chain Of Responsibility)](ChainOfResponsibility) 
 * [Команда (Command)](Command) 
 * [Итератор (Iterator)](Iterator) 
 * [Посредник (Mediator)](Mediator) 

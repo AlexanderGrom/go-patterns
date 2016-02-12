@@ -11,13 +11,13 @@ func TestIterator(t *testing.T) {
 	books := []string{"A", "B", "C", "D", "E", "F"}
 
 	for _, book := range books {
-		shelf.Add(&Book{name:book})
+		shelf.Add(&Book{Name:book})
 	}
 
 	i := 0
 	for iterator := shelf.Iterator(); iterator.HasNext(); {
-		if elm := iterator.Next(); elm.(*Book).name != books[i] {
-			t.Errorf("Expect Book.name to %s, but %s", books[i], elm.(*Book).name)
+		if elm := iterator.Next(); elm.(*Book).Name != books[i] {
+			t.Errorf("Expect Book.Name to %s, but %s", books[i], elm.(*Book).Name)
 		}
 		i++
 	}

@@ -26,7 +26,7 @@ func (self *ConcreteSubject) Attach(observer Observer) {
 	self.observers = append(self.observers, observer)
 }
 
-// Проверяет доступность следующего элемента
+// Отправляет уведомления методом проталкивания
 func (self *ConcreteSubject) Notify() {
 	for _, observer := range self.observers {
 		observer.Update(self.State)
@@ -38,7 +38,7 @@ type ConcreteObserver struct {
 	state string
 }
 
-// Создает и возвращает итератор по коллекции
+// Обновляет состояние подписчика
 func (self *ConcreteObserver) Update(state string) {
 	self.state = state
 }

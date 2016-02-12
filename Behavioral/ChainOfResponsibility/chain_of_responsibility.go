@@ -1,7 +1,7 @@
-// Паттерн Цепочка ответственности (Chain Of Responsibilities)
+// Паттерн Цепочка ответственности (Chain Of Responsibility)
 //
 
-package chain_of_responsibilities
+package chain_of_responsibility
 
 // Тип Handler, описывает интерфейс обработчиков в цепочки
 type Handler interface {

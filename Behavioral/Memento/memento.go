@@ -18,7 +18,7 @@ func (self *Originator) SetMemento(memento *Memento) {
 	self.State = memento.GetState()
 }
 
-// Тип Memento, реализует хранилищ для состояния Originator
+// Тип Memento, реализует хранилище для состояния Originator
 type Memento struct {
 	state string
 }
