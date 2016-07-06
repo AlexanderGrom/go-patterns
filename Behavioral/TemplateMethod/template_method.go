@@ -1,7 +1,7 @@
 // Паттерн Шаблонный метод (Template Method)
 //
-// На самом деле этот шаблон основывается на Абстрактном Классе и Наследовании.
-// Но т.к. ничего этого в Go нет, будет применено агрегирование.
+// На самом деле этот шаблон основывается на Абстрактном Классе и Полиморфизме.
+// Но т.к. ничего этого в Go нет, будет применено встраивание.
 // Хотя по правилам, это паттерн уровня класса.
 
 package template_method
@@ -14,15 +14,15 @@ type QuotesInterface interface {
 
 // Тип Quotes, рeализует Template Method
 type Quotes struct {
-	qt QuotesInterface
+	QuotesInterface
 }
 
 // Template Method
 func (self *Quotes) Quotes(str string) string {
-	return self.qt.Open() + str + self.qt.Close()
+	return self.Open() + str + self.Close()
 }
 
-// Установка закрывающей кавычки
+// Конструктор
 func NewQuotes(qt QuotesInterface) *Quotes {
 	return &Quotes{qt}
 }

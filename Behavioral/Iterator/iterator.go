@@ -5,8 +5,13 @@ package iterator
 
 // Тип Iterator, описывает общий интерфейс для итераторов.
 type Iterator interface {
-	Next() interface{}
-	HasNext() bool
+	Index() int
+	Value() interface{}
+	Has() bool
+	Next()
+	Prev()
+	Reset()
+	End()
 }
 
 // Тип Aggregate, описывает общий интерфейс для коллекций.
@@ -16,23 +21,55 @@ type Aggregate interface {
 
 // Тип BookIterator (ConcreteIterator), реализует итератор по книжной полке
 type BookIterator struct {
-	shelf   *BookShelf
-	current int
+	shelf    *BookShelf
+	index    int
+	internal int
 }
 
-// Возвращает следующий элемент
-func (self *BookIterator) Next() interface{} {
-	book := self.shelf.Books[self.current]
-	self.current++
-	return book
+// Возвращает текущий индекс
+func (self *BookIterator) Index() int {
+	return self.index
 }
 
-// Проверяет доступность следующего элемента
-func (self *BookIterator) HasNext() bool {
-	if self.current >= len(self.shelf.Books) {
+// Возвращает текущее значение
+func (self *BookIterator) Value() interface{} {
+	return self.shelf.Books[self.index]
+}
+
+// Проверет возможен ли переход к другому элементу
+func (self *BookIterator) Has() bool {
+	if self.internal < 0 || self.internal >= len(self.shelf.Books) {
 		return false
 	}
 	return true
+}
+
+// Переходит к следующему элементу
+func (self *BookIterator) Next() {
+	self.internal++
+	if self.Has() {
+		self.index++
+	}
+}
+
+// Переходит к предыдущему элементу
+func (self *BookIterator) Prev() {
+	self.internal--
+	if self.Has() {
+		self.index--
+	}
+}
+
+// Сбрасывает итератор в начало
+func (self *BookIterator) Reset() {
+	self.index = 0
+	self.internal = 0
+}
+
+// Прокручивает итератор в конец
+func (self *BookIterator) End() {
+	self.index = len(self.shelf.Books) - 1
+	self.internal = self.index
 }
 
 // Тип BookShelf (ConcreteAggregate), реализует книжную полку (коллекцию элементов)
