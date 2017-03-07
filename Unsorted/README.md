@@ -1,6 +1,6 @@
 
 ### Неотсортированные и наброски
 
-* [Спецификация (Specifications)](Specifications)
+* [Спецификация (Specification)](Specification)
 
 ## -~- THE END -~-
