@@ -10,9 +10,9 @@ func TestFactoryMethod(t *testing.T) {
 
 	factory := new(ConcreteCreator)
 	products := []Producter{
-		factory.СreateProduct("A"),
-		factory.СreateProduct("B"),
-		factory.СreateProduct("C"),
+		factory.CreateProduct("A"),
+		factory.CreateProduct("B"),
+		factory.CreateProduct("C"),
 	}
 
 	for i, product := range products {

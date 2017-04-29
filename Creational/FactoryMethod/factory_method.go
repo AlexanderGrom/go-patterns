@@ -11,7 +11,7 @@ import (
 // который должна реализовать конкретная фабрика
 // для производства продуктов.
 type Creater interface {
-	СreateProduct(action string) Producter // Параметризированный Фабричный Метод
+	CreateProduct(action string) Producter // Параметризированный Фабричный Метод
 	registerProduct(Producter)             // Регистрация созданого подукта (для полноты картины)
 }
 
@@ -30,7 +30,7 @@ type ConcreteCreator struct {
 }
 
 // Параметризированный Фабричный Метод
-func (self *ConcreteCreator) СreateProduct(action string) Producter {
+func (self *ConcreteCreator) CreateProduct(action string) Producter {
 	var product Producter
 
 	switch action {
