@@ -28,7 +28,7 @@ func (self *Car) Rase() string {
 type EngineSuzuki struct {
 }
 
-// Метод отвечает за завук двигателя
+// Метод отвечает за звук двигателя
 func (self *EngineSuzuki) GetSound() string {
 	return "SssuuuuZzzuuuuKkiiiii"
 }
@@ -37,7 +37,7 @@ func (self *EngineSuzuki) GetSound() string {
 type EngineHonda struct {
 }
 
-// Метод отвечает за завук двигателя
+// Метод отвечает за звук двигателя
 func (self *EngineHonda) GetSound() string {
 	return "HhoooNnnnnnnnnDddaaaaaaa"
 }
@@ -46,7 +46,7 @@ func (self *EngineHonda) GetSound() string {
 type EngineLada struct {
 }
 
-// Метод отвечает за завук двигателя
+// Метод отвечает за звук двигателя
 func (self *EngineLada) GetSound() string {
 	return "PhhhhPhhhhPhPhPhPhPh"
 }
