@@ -112,7 +112,7 @@ type NotSpecification struct {
 
 // Check specification
 func (self *NotSpecification) IsSatisfiedBy(elm Invoice) bool {
-	return self.Specification.IsSatisfiedBy(elm)
+	return !self.Specification.IsSatisfiedBy(elm)
 }
 
 /////
