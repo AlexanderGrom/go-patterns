@@ -2,33 +2,33 @@
 //
 // В примере описываются варианты оповещения пользователя мобильного телефона.
 // На самом деле, хорошо было бы реализовать смену состояния внутри системы
-// оповещения (ModileAlert), по каким-либо критериям. Например, задействуя файл конфигруции.
+// оповещения (MobileAlert), по каким-либо критериям. Например, задействуя файл конфигруции.
 // Но для упращения примера, используется внешняя смена состояния, посредствам метода SetState()
 
 package state
 
-// Тип ModileAlertStater, описывает общий интерфейс для различных состояний
-type ModileAlertStater interface {
+// Тип MobileAlertStater, описывает общий интерфейс для различных состояний
+type MobileAlertStater interface {
 	Alert() string
 }
 
-// Тип ModileAlert, реализует оповещение в зависимости от своего состояния
-type ModileAlert struct {
-	state ModileAlertStater
+// Тип MobileAlert, реализует оповещение в зависимости от своего состояния
+type MobileAlert struct {
+	state MobileAlertStater
 }
 
 // Оповещение в зависимости от внутреннего состояния
-func (self *ModileAlert) Alert() string {
+func (self *MobileAlert) Alert() string {
 	return self.state.Alert()
 }
 
 // Меняет состояние
-func (self *ModileAlert) SetState(state ModileAlertStater) {
+func (self *MobileAlert) SetState(state MobileAlertStater) {
 	self.state = state
 }
 
-func NewModileAlert() *ModileAlert {
-	return &ModileAlert{state: &MobileAlertVibration{}}
+func NewMobileAlert() *MobileAlert {
+	return &MobileAlert{state: &MobileAlertVibration{}}
 }
 
 // Тип MobileAlertVibration, реализует оповещение только вибрацией
