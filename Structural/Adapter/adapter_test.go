@@ -6,12 +6,11 @@ import (
 
 func TestAdapter(t *testing.T) {
 
-	adapter := &Adapter{}
-	
+	adapter := &Adapter{&Adaptee{}}
+
 	req := adapter.Request()
 
 	if req != "Request" {
 		t.Errorf("Expect volume to %s, but %s", "Request", req)
 	}
-
 }

@@ -1,69 +1,65 @@
-// Абстрактная фабрика (Abstract Factory)
-//
-
+// Package abstract_factory is an example of the Abstract Factory Pattern.
 package abstract_factory
 
-// Тип AbstractFactory, описывает интерфейс Абстрактной Фабрики
-// по производству газировки.
-// Конкретные фабрики должны его реализовать.
+// AbstractFactory provides an interface for creating families of related objects.
 type AbstractFactory interface {
-	createWater(volume float64) AbstractWater
-	createBottle(volume float64) AbstractBottle
+	CreateWater(volume float64) AbstractWater
+	CreateBottle(volume float64) AbstractBottle
 }
 
-// Тип AbstractWater, описывает интерфейс напитка.
+// AbstractWater provides a water interface.
 type AbstractWater interface {
-	GetVolume() float64 // Возможность получения объема
+	GetVolume() float64
 }
 
-// Тип AbstractBottle, описывает интерфейс бутылки.
+// AbstractBottle provides a bottle interface.
 type AbstractBottle interface {
-	InteractWater(water AbstractWater)  // Бутылка взаимодействует с напитком
-	GetBottleVolume() float64           // Возможность получения объема бутылки
-	GetWaterVolume() float64            // Возможность получения объема напитка в бутылке
+	PourWater(water AbstractWater) // Bottle interacts with a water.
+	GetBottleVolume() float64
+	GetWaterVolume() float64
 }
 
-// Тип CocaColaFactory, реализует фабрику по производству CocaCola.
+// CocaColaFactory implements AbstractFactory interface.
 type CocaColaFactory struct {
 }
 
-// Создает воду
-func (self *CocaColaFactory) createWater(volume float64) *CocaColaWater {
+// CreateWater implementation.
+func (f *CocaColaFactory) CreateWater(volume float64) *CocaColaWater {
 	return &CocaColaWater{volume: volume}
 }
 
-// Создает бутылку
-func (self *CocaColaFactory) createBottle(volume float64) *CocaColaBottle {
+// CreateBottle implementation.
+func (f *CocaColaFactory) CreateBottle(volume float64) *CocaColaBottle {
 	return &CocaColaBottle{volume: volume}
 }
 
-// Напиток CocaCola
+// CocaColaWater implements AbstractWater.
 type CocaColaWater struct {
-	volume float64 // Объем созданого напитка
+	volume float64 // Volume of drink.
 }
 
-// Получить объем созданого напитка
-func (self *CocaColaWater) GetVolume() float64 {
-	return self.volume
+// GetVolume returns volume of drink.
+func (w *CocaColaWater) GetVolume() float64 {
+	return w.volume
 }
 
-// Бутылка CocaCola
+// CocaColaBottle implements AbstractBottle.
 type CocaColaBottle struct {
-	water  *CocaColaWater // Бутылка должна содержать напиток
-	volume float64        // Объем бутылки
+	water  *CocaColaWater // Bottle must contain a drink.
+	volume float64        // Volume of bottle.
 }
 
-// Наливаем напиток в бутылку
-func (self *CocaColaBottle) InteractWater(water *CocaColaWater) {
-	self.water = water
+// PourWater pours water into a bottle.
+func (b *CocaColaBottle) PourWater(water *CocaColaWater) {
+	b.water = water
 }
 
-// Получить объем бутылки
-func (self *CocaColaBottle) GetBottleVolume() float64 {
-	return self.volume
+// GetBottleVolume returns volume of bottle.
+func (b *CocaColaBottle) GetBottleVolume() float64 {
+	return b.volume
 }
 
-// Получить объем налитого напитка
-func (self *CocaColaBottle) GetWaterVolume() float64 {
-	return self.water.GetVolume()
+// GetWaterVolume returns volume of water.
+func (b *CocaColaBottle) GetWaterVolume() float64 {
+	return b.water.GetVolume()
 }

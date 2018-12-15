@@ -1,66 +1,57 @@
-// Паттерн Строитель (Builder)
-//
-
+// Package builder is an example of the Builder Pattern.
 package builder
 
-// Тип Вuilder, описывает интерфейс строителя.
-// Строитель должен ему соответвовать, что бы строить
-// конкретный продукт.
+// Вuilder provides a builder interface.
 type Вuilder interface {
-	makeHeader(str string)
-	makeContent(str string)
-	makeFooter(str string)
+	MakeHeader(str string)
+	MakeContent(str string)
+	MakeFooter(str string)
 }
 
-// Тип Director, реализует руководителя строителем.
-// Примимает строителя и руководит им!
+// Director implements a manager
 type Director struct {
 	builder Вuilder
 }
 
-// Конструктор, говорит строителю, что ему делать
-// в нужной последовательности.
-func (self *Director) Construct() {
-	self.builder.makeHeader("Header")
-	self.builder.makeContent("Content")
-	self.builder.makeFooter("Footer")
+// Construct tells the builder what to do and in what order.
+func (d *Director) Construct() {
+	d.builder.MakeHeader("Header")
+	d.builder.MakeContent("Content")
+	d.builder.MakeFooter("Footer")
 }
 
-// Конкретный строитель.
-// Умеет строить части продукта.
+// ConcreteBuilder implements Builder interface.
 type ConcreteBuilder struct {
 	product *Product
 }
 
-// Строит шапку документа
-func (self *ConcreteBuilder) makeHeader(str string) {
-	self.product.Header = "<header>" + str + "</header>\n"
+// MakeHeader builds a header of document..
+func (b *ConcreteBuilder) MakeHeader(str string) {
+	b.product.Header = "<header>" + str + "</header>\n"
 }
 
-// Строит содержание документа
-func (self *ConcreteBuilder) makeContent(str string) {
-	self.product.Content = "<article>" + str + "</article>\n"
+// MakeContent builds a content of document.
+func (b *ConcreteBuilder) MakeContent(str string) {
+	b.product.Content = "<article>" + str + "</article>\n"
 }
 
-// Строит подвал документа
-func (self *ConcreteBuilder) makeFooter(str string) {
-	self.product.Footer = "<footer>" + str + "</footer>\n"
+// MakeFooter builds a footer of document.
+func (b *ConcreteBuilder) MakeFooter(str string) {
+	b.product.Footer = "<footer>" + str + "</footer>\n"
 }
 
-// Сложный продукт.
-// Бывают реализации без него, когда строитель стразу строит,
-// а не создает объект продукта и потом конструирует его.
+// Product implementation.
 type Product struct {
 	Header  string
 	Content string
 	Footer  string
 }
 
-// Показать готовый (или нет) продукт
-func (self *Product) Show() string {
+// Show returns product.
+func (p *Product) Show() string {
 	var result string
-	result = self.Header
-	result += self.Content
-	result += self.Footer
+	result += p.Header
+	result += p.Content
+	result += p.Footer
 	return result
 }

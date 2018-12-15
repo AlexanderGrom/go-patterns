@@ -12,5 +12,4 @@ func TestSingleton(t *testing.T) {
 	if instance1 != instance2 {
 		t.Error("Objects are not equal!\n")
 	}
-
 }

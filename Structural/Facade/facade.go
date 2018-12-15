@@ -1,13 +1,11 @@
-// Паттерн Фасад (Facade)
-//
-
+// Package facade is an example of the Facade Pattern.
 package facade
 
 import (
 	"strings"
 )
 
-// Создает мужика
+// NewMan creates man.
 func NewMan() *Man {
 	return &Man{
 		house: &House{},
@@ -16,47 +14,46 @@ func NewMan() *Man {
 	}
 }
 
-// Тип Man, реализует мужика и фасад
-// В мужике заложено:
+// Man implements man and facade.
 type Man struct {
 	house *House
 	tree  *Tree
 	child *Child
 }
 
-// Мужик должен сделать
-func (self *Man) Todo() string {
+// Todo returns that man must do.
+func (m *Man) Todo() string {
 	result := []string{
-		self.house.Build(),
-		self.tree.Grow(),
-		self.child.Born(),
+		m.house.Build(),
+		m.tree.Grow(),
+		m.child.Born(),
 	}
 	return strings.Join(result, "\n")
 }
 
-// Тип House, реализует подсистему "Дом"
+// House implements a subsystem "House"
 type House struct {
 }
 
-// Строительство дома
-func (self *House) Build() string {
+// Build implementation.
+func (h *House) Build() string {
 	return "Build house"
 }
 
-// Тип Tree, реализует подсистему "Дерево"
+// Tree implements a subsystem "Tree"
 type Tree struct {
 }
 
-// Посадка дерева
-func (self *Tree) Grow() string {
+// Grow implementation.
+func (t *Tree) Grow() string {
 	return "Tree grow"
 }
 
-// Тип Child, реализует подсистему "Ребёнок"
+// Child implements a subsystem "Child"
 type Child struct {
 }
 
-// Производство детей =)
-func (self *Child) Born() string {
+// Born implementation.
+func (c *Child) Born() string {
 	return "Child born"
 }

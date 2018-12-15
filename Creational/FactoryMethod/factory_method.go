@@ -1,36 +1,27 @@
-// Паттерн Фабричный метод (FactoryMethod)
-//
-
+// Package factory_method is an example of the Factory Method Pattern.
 package factory_method
 
 import (
 	"log"
 )
 
-// Тип Creater, описывает интерфейс,
-// который должна реализовать конкретная фабрика
-// для производства продуктов.
+// Creater provides a factory interface.
 type Creater interface {
-	CreateProduct(action string) Producter // Параметризированный Фабричный Метод
-	registerProduct(Producter)             // Регистрация созданого подукта (для полноты картины)
+	CreateProduct(action string) Producter // Factory Method
 }
 
-// Тип Producter, описывающий интерфейс продукта,
-// который возвращает фабрика.
-// Все продукты возвращаемые фабрикой должны придерживаться
-// единого интерфейса.
+// Producter provides a product interface.
+// All products returned by factory must provide a single interface.
 type Producter interface {
-	Use() string // каждый продукт должно быть можно использовать
+	Use() string // Every product should be can be used
 }
 
-// Тип конкретной фабрики по производству продуктов.
-// Она имеет фабричный метод и производит продукты.
+// ConcreteCreator implements Creater interface.
 type ConcreteCreator struct {
-	products []*Producter // произведенные продукты (для полноты картины)
 }
 
-// Параметризированный Фабричный Метод
-func (self *ConcreteCreator) CreateProduct(action string) Producter {
+// CreateProduct is a Factory Method
+func (p *ConcreteCreator) CreateProduct(action string) Producter {
 	var product Producter
 
 	switch action {
@@ -44,42 +35,35 @@ func (self *ConcreteCreator) CreateProduct(action string) Producter {
 		log.Fatalln("Unknown Action")
 	}
 
-	self.registerProduct(product)
-
 	return product
 }
 
-// Регистрация созданого подукта на фабрике
-func (self *ConcreteCreator) registerProduct(product Producter) {
-	self.products = append(self.products, &product)
-}
-
-// Тип конкретного продукта "A", который создает фабрика
+// ConcreteProductA implements product "A"
 type ConcreteProductA struct {
-	action string // Действие которое делает продукт
+	action string
 }
 
-// Продукт можно использовать и получить действие которое он делает
-func (self *ConcreteProductA) Use() string {
-	return self.action
+// Use returns product action
+func (p *ConcreteProductA) Use() string {
+	return p.action
 }
 
-// Тип конкретного продукта "B", который создает фабрика
+// ConcreteProductB implements product "B"
 type ConcreteProductB struct {
-	action string // Действие которое делает продукт
+	action string
 }
 
-// Продукт можно использовать и получить действие которое он делает
-func (self *ConcreteProductB) Use() string {
-	return self.action
+// Use returns product action
+func (p *ConcreteProductB) Use() string {
+	return p.action
 }
 
-// Тип конкретного продукта "C", который создает фабрика
+// ConcreteProductC implements product "C"
 type ConcreteProductC struct {
-	action string // Действие которое делает продукт
+	action string
 }
 
-// Продукт можно использовать и получить действие которое он делает
-func (self *ConcreteProductC) Use() string {
-	return self.action
+// Use returns product action
+func (p *ConcreteProductC) Use() string {
+	return p.action
 }

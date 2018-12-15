@@ -1,35 +1,32 @@
-// Паттерн Хранитель (Memento)
-//
-
+// Package memento is an example of the Memento Pattern.
 package memento
 
-// Тип Originator, реализует хозяина состояния
+// Originator implements a state master.
 type Originator struct {
 	State string
 }
 
-// Создает хранилище состояния
-func (self *Originator) CreateMemento() *Memento {
-	return &Memento{state: self.State}
+// CreateMemento returns state storage.
+func (o *Originator) CreateMemento() *Memento {
+	return &Memento{state: o.State}
 }
 
-// Восстанавливает состояние
-func (self *Originator) SetMemento(memento *Memento) {
-	self.State = memento.GetState()
+// SetMemento sets old state.
+func (o *Originator) SetMemento(memento *Memento) {
+	o.State = memento.GetState()
 }
 
-// Тип Memento, реализует хранилище для состояния Originator
+// Memento implements storage for the state of Originator
 type Memento struct {
 	state string
 }
 
-// Получить состояние
-func (self *Memento) GetState() string {
-	return self.state
+// GetState returns state.
+func (m *Memento) GetState() string {
+	return m.state
 }
 
-// Тип Caretaker, получает и хранит объект-хранитель (Memento),
-// пока он не понадобится хозяину.
+// Caretaker keeps Memento until it is needed by Originator.
 type Caretaker struct {
 	Memento *Memento
 }

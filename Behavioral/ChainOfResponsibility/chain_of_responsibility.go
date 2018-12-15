@@ -1,51 +1,52 @@
-// Паттерн Цепочка ответственности (Chain Of Responsibility)
-//
-
+// Package chain_of_responsibility is an example of the Chain Of Responsibility Pattern.
 package chain_of_responsibility
 
-// Тип Handler, описывает интерфейс обработчиков в цепочки
+// Handler provides a handler interface.
 type Handler interface {
 	SendRequest(message int) string
 }
 
-// Тип ConcreteHandlerA, реализует обработчик "A"
+// ConcreteHandlerA implements handler "A".
 type ConcreteHandlerA struct {
 	next Handler
 }
 
-func (self *ConcreteHandlerA) SendRequest(message int) (result string) {
+// SendRequest implementation.
+func (h *ConcreteHandlerA) SendRequest(message int) (result string) {
 	if message == 1 {
 		result = "Im handler 1"
-	} else if self.next != nil {
-		result = self.next.SendRequest(message)
+	} else if h.next != nil {
+		result = h.next.SendRequest(message)
 	}
 	return
 }
 
-// Тип ConcreteHandlerB, реализует обработчик "B"
+// ConcreteHandlerB implements handler "B".
 type ConcreteHandlerB struct {
 	next Handler
 }
 
-func (self *ConcreteHandlerB) SendRequest(message int) (result string) {
+// SendRequest implementation.
+func (h *ConcreteHandlerB) SendRequest(message int) (result string) {
 	if message == 2 {
 		result = "Im handler 2"
-	} else if self.next != nil {
-		result = self.next.SendRequest(message)
+	} else if h.next != nil {
+		result = h.next.SendRequest(message)
 	}
 	return
 }
 
-// Тип ConcreteHandlerC, реализует обработчик "C"
+// ConcreteHandlerC implements handler "C".
 type ConcreteHandlerC struct {
 	next Handler
 }
 
-func (self *ConcreteHandlerC) SendRequest(message int) (result string) {
+// SendRequest implementation.
+func (h *ConcreteHandlerC) SendRequest(message int) (result string) {
 	if message == 3 {
 		result = "Im handler 3"
-	} else if self.next != nil {
-		result = self.next.SendRequest(message)
+	} else if h.next != nil {
+		result = h.next.SendRequest(message)
 	}
 	return
 }

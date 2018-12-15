@@ -1,29 +1,29 @@
-// Паттерн Заместитель (Proxy)
-//
-
+// Package proxy is an example of the Adapter Pattern.
 package proxy
 
-// Тип Subject, описывает интерфейс для реального объекта и его суррогата
+// Subject provides an interface for a real subject and its surrogate.
 type Subject interface {
 	Send() string
 }
 
-// Тип Proxy, реализует объект суррогата
+// Proxy implements a surrogate.
 type Proxy struct {
 	realSubject Subject
 }
 
-func (self *Proxy) Send() string {
-	if self.realSubject == nil {
-		self.realSubject = &RealSubject{}
+// Send sends a message
+func (p *Proxy) Send() string {
+	if p.realSubject == nil {
+		p.realSubject = &RealSubject{}
 	}
-	return "<strong>" + self.realSubject.Send() + "</strong>"
+	return "<strong>" + p.realSubject.Send() + "</strong>"
 }
 
-// Тип RealSubject, реализует реальный объект
+// RealSubject implements a real subject
 type RealSubject struct {
 }
 
-func (self *RealSubject) Send() string {
+// Send sends a message
+func (s *RealSubject) Send() string {
 	return "I’ll be back!"
 }

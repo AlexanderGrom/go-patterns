@@ -1,64 +1,64 @@
-// Паттерн Стратегия (Strategy)
-//
-
+// Package strategy is an example of the Strategy Pattern.
 package strategy
 
-// Тип StrategySort, описывает интерфейс стратегий (алгоритмов)
+// StrategySort provides an interface for sort algorithms.
 type StrategySort interface {
 	Sort([]int)
 }
 
-// Тип BubbleSort, рeализует алгоритм сортировки пузырьком
+// BubbleSort implements bubble sort algorithm.
 type BubbleSort struct {
 }
 
-func (self *BubbleSort) Sort(s []int) {
-	size := len(s)
+// Sort sorts data.
+func (s *BubbleSort) Sort(a []int) {
+	size := len(a)
 	if size < 2 {
 		return
 	}
 	for i := 0; i < size; i++ {
 		for j := size - 1; j >= i+1; j-- {
-			if s[j] < s[j-1] {
-				s[j], s[j-1] = s[j-1], s[j]
+			if a[j] < a[j-1] {
+				a[j], a[j-1] = a[j-1], a[j]
 			}
 		}
 	}
 }
 
-// Тип InsertionSort, рeализует алгоритм сортировки вставками
+// InsertionSort implements insertion sort algorithm.
 type InsertionSort struct {
 }
 
-func (self *InsertionSort) Sort(s []int) {
-	size := len(s)
+// Sort sorts data.
+func (s *InsertionSort) Sort(a []int) {
+	size := len(a)
 	if size < 2 {
 		return
 	}
 	for i := 1; i < size; i++ {
 		var j int
-		var buff int = s[i]
+		var buff = a[i]
 		for j = i - 1; j >= 0; j-- {
-			if s[j] < buff {
+			if a[j] < buff {
 				break
 			}
-			s[j+1] = s[j]
+			a[j+1] = a[j]
 		}
-		s[j+1] = buff
+		a[j+1] = buff
 	}
 }
 
-// Тип Context, рeализует контекст выполнения той или иной стратегии
+// Context provides a context for execution of a strategy.
 type Context struct {
 	strategy StrategySort
 }
 
-// Подмена стратегии (алгоритма)
-func (self *Context) Algorithm(a StrategySort) {
-	self.strategy = a
+// Algorithm replaces strategies.
+func (c *Context) Algorithm(a StrategySort) {
+	c.strategy = a
 }
 
-// Сортировка в зависимости от выбраной стратегии (алгоритма)
-func (self *Context) Sort(s []int) {
-	self.strategy.Sort(s)
+// Sort sorts data according to the chosen strategy.
+func (c *Context) Sort(s []int) {
+	c.strategy.Sort(s)
 }

@@ -1,42 +1,41 @@
-// Паттерн Приспособленец (Flyweight)
-//
-
+// Package flyweight is an example of the Flyweight Pattern.
 package flyweight
 
-// Тип Flyweight, описывает общий интерфейс для приспособленцев
+// Flyweighter interface
 type Flyweighter interface {
 	GetName() string
 	SetName(name string)
 }
 
-// Тип FlyweightFactory, реализует фабрику для создания приспособленцев.
-// Если подходящий приспособленец есть в пуле, то возвращает его
+// FlyweightFactory implements a factory.
+// If a suitable flyweighter is in pool, then returns it.
 type FlyweightFactory struct {
 	pool map[int]Flyweighter
 }
 
-// Создание или получение подходящего приспособленца по состоянию.
-// В данном случает состояние это число, которое характеризует конкретного приспособленца
-func (self *FlyweightFactory) GetFlyweight(state int) Flyweighter {
-	if self.pool == nil {
-		self.pool = make(map[int]Flyweighter)
+// GetFlyweight creates or returns a suitable Flyweighter by state.
+func (f *FlyweightFactory) GetFlyweight(state int) Flyweighter {
+	if f.pool == nil {
+		f.pool = make(map[int]Flyweighter)
 	}
-	if _, ok := self.pool[state]; !ok {
-		self.pool[state] = &ConcreteFlyweight{state: state}
+	if _, ok := f.pool[state]; !ok {
+		f.pool[state] = &ConcreteFlyweight{state: state}
 	}
-	return self.pool[state]
+	return f.pool[state]
 }
 
-// Тип ConcreteFlyweight, реализует приспособленца
+// ConcreteFlyweight implements a Flyweighter interface.
 type ConcreteFlyweight struct {
 	state int
 	name  string
 }
 
-func (self *ConcreteFlyweight) GetName() string {
-	return "My name: " + self.name
+// GetName returns name
+func (f *ConcreteFlyweight) GetName() string {
+	return "My name: " + f.name
 }
 
-func (self *ConcreteFlyweight) SetName(name string) {
-	self.name = name
+// SetName sets a name
+func (f *ConcreteFlyweight) SetName(name string) {
+	f.name = name
 }

@@ -1,18 +1,9 @@
-// Паттерн Посредник (Mediator)
-//
-
+// Package mediator is an example of the Mediator Pattern.
 package mediator
 
-// Тип Mediator, описывает интерфейс для просредника
+// Mediator provides a mediator interface.
 type Mediator interface {
-	ConnectColleagues()
-	Send(msg string)
-}
-
-// Тип Colleague, описывает интерфейс процесса взаимодействия
-// объектов-коллег с объектом типа Mediator;
-type Colleague interface {
-	setMediator(mediator Mediator)
+	Notify(msg string)
 }
 
 // Тип ConcreteMediator, реализует посредника
@@ -22,98 +13,111 @@ type ConcreteMediator struct {
 	*Shop
 }
 
-// Подключить коллег
-func (self *ConcreteMediator) ConnectColleagues() {
-	self.Farmer.setMediator(self)
-	self.Cannery.setMediator(self)
-	self.Shop.setMediator(self)
-}
-
-// Общение с коллегами
-func (self *ConcreteMediator) Send(msg string) {
+// Notify implementation.
+func (m *ConcreteMediator) Notify(msg string) {
 	if msg == "Farmer: Tomato complete..." {
-		self.Cannery.money -= 15000.00
-		self.Farmer.money += 15000.00
-		self.Cannery.MakeKetchup(self.Farmer.GetTomato())
+		m.Cannery.AddMoney(-15000.00)
+		m.Farmer.AddMoney(15000.00)
+		m.Cannery.MakeKetchup(m.Farmer.GetTomato())
 	} else if msg == "Cannery: Ketchup complete..." {
-		self.Shop.money -= 30000.00
-		self.Cannery.money += 30000.00
-		self.Shop.SellKetchup(self.Cannery.GetKetchup())
+		m.Shop.AddMoney(-30000.00)
+		m.Cannery.AddMoney(30000.00)
+		m.Shop.SellKetchup(m.Cannery.GetKetchup())
 	}
 }
 
-func NewMediator() *ConcreteMediator {
-	mediator := &ConcreteMediator{}
-	mediator.ConnectColleagues()
-	mediator.Farmer.money = 7500.00
-	mediator.Cannery.money = 15000.00
-	mediator.Shop.money = 30000.00
-	return mediator
+// СonnectСolleagues connects all colleagues.
+func СonnectСolleagues(farmer *Farmer, cannery *Cannery, shop *Shop) {
+	mediator := &ConcreteMediator{
+		Farmer:  farmer,
+		Cannery: cannery,
+		Shop:    shop,
+	}
+
+	mediator.Farmer.SetMediator(mediator)
+	mediator.Cannery.SetMediator(mediator)
+	mediator.Shop.SetMediator(mediator)
 }
 
-// Тип Farmer, реализует коллегу Фермер
+// Farmer implements a Farmer colleague
 type Farmer struct {
 	mediator Mediator
 	tomato   int
 	money    float64
 }
 
-// Установить посредника
-func (self *Farmer) setMediator(mediator Mediator) {
-	self.mediator = mediator
+// SetMediator sets mediator.
+func (f *Farmer) SetMediator(mediator Mediator) {
+	f.mediator = mediator
 }
 
-// Фермер выращивает помидоры
-func (self *Farmer) GrowTomato(tomato int) {
-	self.tomato = tomato
-	self.money -= 7500.00
-	self.mediator.Send("Farmer: Tomato complete...")
+// AddMoney adds money.
+func (f *Farmer) AddMoney(m float64) {
+	f.money += m
 }
 
-// Получить помидоры
-func (self *Farmer) GetTomato() int {
-	return self.tomato
+// GrowTomato implementation.
+func (f *Farmer) GrowTomato(tomato int) {
+	f.tomato = tomato
+	f.money -= 7500.00
+	f.mediator.Notify("Farmer: Tomato complete...")
 }
 
-// Тип Cannery, реализует коллегу Завод
+// GetTomato returns tomatos.
+func (f *Farmer) GetTomato() int {
+	return f.tomato
+}
+
+// Cannery implements a Cannery colleague.
 type Cannery struct {
 	mediator Mediator
 	ketchup  int
 	money    float64
 }
 
-// Установить посредника
-func (self *Cannery) setMediator(mediator Mediator) {
-	self.mediator = mediator
+// SetMediator sets mediator.
+func (c *Cannery) SetMediator(mediator Mediator) {
+	c.mediator = mediator
 }
 
-// Завод перерабатывает помидоры в кетчуп
-func (self *Cannery) MakeKetchup(tomato int) {
-	self.ketchup = tomato
-	self.mediator.Send("Cannery: Ketchup complete...")
+// AddMoney adds money.
+func (c *Cannery) AddMoney(m float64) {
+	c.money += m
 }
 
-// Получить кетчуп
-func (self *Cannery) GetKetchup() int {
-	return self.ketchup
+// MakeKetchup implementation.
+func (c *Cannery) MakeKetchup(tomato int) {
+	c.ketchup = tomato
+	c.mediator.Notify("Cannery: Ketchup complete...")
 }
 
-// Тип Shop, реализует коллегу Магазин
+// GetKetchup returns ketchup.
+func (c *Cannery) GetKetchup() int {
+	return c.ketchup
+}
+
+// Shop implements a Shop colleague.
 type Shop struct {
 	mediator Mediator
 	money    float64
 }
 
-// Установить посредника
-func (self *Shop) setMediator(mediator Mediator) {
-	self.mediator = mediator
+// SetMediator sets mediator.
+func (s *Shop) SetMediator(mediator Mediator) {
+	s.mediator = mediator
 }
 
-// Магазин продает кетчуп
-func (self *Shop) SellKetchup(ketchup int) {
-	self.money = float64(ketchup) * 54.75
+// AddMoney adds money.
+func (s *Shop) AddMoney(m float64) {
+	s.money += m
 }
 
-func (self *Shop) GetMoney() float64 {
-	return self.money
+// SellKetchup converts ketchup to money.
+func (s *Shop) SellKetchup(ketchup int) {
+	s.money = float64(ketchup) * 54.75
+}
+
+// GetMoney returns money.
+func (s *Shop) GetMoney() float64 {
+	return s.money
 }

@@ -1,32 +1,23 @@
-// Паттерн Одиночка (Singleton)
-//
-// В данном примере описан потоко-безопасный метод, используя пакет sync.
-// В противном случае, несколько go-рутин могут создать несколько
-// экземпляров типа *singleton, каждый из которых затрет собой instance.
-
+// Package singleton is an example of the Singleton Pattern.
 package singleton
 
 import (
 	"sync"
 )
 
-// Тип singleton, экземпляр которого требуется создавать
-type singleton struct {
+// Singleton implementation.
+type Singleton struct {
 }
 
-// Инстанс, который будет содержать единственный экземпляр типа *singleton
-var instance *singleton
+var (
+	instance *Singleton
+	once     sync.Once
+)
 
-// Объект, который позволяет выполнять некоторое действие только один раз
-var once sync.Once
-
-// Функция создает и возвращает экземпляр типа *singleton
-func GetInstance() *singleton {
-	// Метод once.Do вызовет переданую в него функцию только один раз.
-	// Под капотом используется пакет sync/atomic для обеспечения атомарности операции
-	// и блокировки с помощью мьютексов.
+// GetInstance returns singleton
+func GetInstance() *Singleton {
 	once.Do(func() {
-		instance = &singleton{}
+		instance = &Singleton{}
 	})
 	return instance
 }

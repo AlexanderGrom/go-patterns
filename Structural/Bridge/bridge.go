@@ -1,52 +1,49 @@
-// Паттерн Мост (Bridge)
-//
-
+// Package bridge is an example of the Bridge Pattern.
 package bridge
 
-// Тип Carer, описывает интерфейс автомобиля
+// Carer provides car interface.
 type Carer interface {
-	Rase() string // автомобиль умеет ездить (для этого и нужен двигатель)
+	Rase() string
 }
 
-// Тип Enginer, описывает интерфейс двигателя
-// Каждый двигатель должен его реализовать
+// Enginer provides engine interface.
 type Enginer interface {
-	GetSound() string // Возвращает звук двигателя
+	GetSound() string
 }
 
-// Тип Car, реализует автомобиль
+// Car implementation.
 type Car struct {
 	engine Enginer
 }
 
-// Машина едет
-func (self *Car) Rase() string {
-	return self.engine.GetSound()
+// Rase implementation.
+func (c *Car) Rase() string {
+	return c.engine.GetSound()
 }
 
-// Тип EngineSuzuki, реализует двигатель Suzuki
+// EngineSuzuki implements Suzuki engine.
 type EngineSuzuki struct {
 }
 
-// Метод отвечает за звук двигателя
-func (self *EngineSuzuki) GetSound() string {
+// GetSound returns sound of the engine.
+func (e *EngineSuzuki) GetSound() string {
 	return "SssuuuuZzzuuuuKkiiiii"
 }
 
-// Тип EngineHonda, реализует двигатель Honda
+// EngineHonda implements Honda engine.
 type EngineHonda struct {
 }
 
-// Метод отвечает за звук двигателя
-func (self *EngineHonda) GetSound() string {
+// GetSound returns sound of the engine.
+func (e *EngineHonda) GetSound() string {
 	return "HhoooNnnnnnnnnDddaaaaaaa"
 }
 
-// Тип EngineLada, реализует двигатель АвтоВаза
+// EngineLada implements Lada engine.
 type EngineLada struct {
 }
 
-// Метод отвечает за звук двигателя
-func (self *EngineLada) GetSound() string {
+// GetSound returns sound of the engine.
+func (e *EngineLada) GetSound() string {
 	return "PhhhhPhhhhPhPhPhPhPh"
 }

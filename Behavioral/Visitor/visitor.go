@@ -1,93 +1,94 @@
-// Паттерн Посетитель (Visitor)
-//
-
+// Package visitor is an example of the Visitor Pattern.
 package visitor
 
-// Тип Visitor, описывает интерфейс визитера
+// Visitor provides a visitor interface.
 type Visitor interface {
 	VisitSushiBar(p *SushiBar) string
 	VisitPizzeria(p *Pizzeria) string
 	VisitBurgerBar(p *BurgerBar) string
 }
 
-// Тип Place, описывает интерфейс элементов, которые визитер должен обойти
+// Place provides an interface for place that the visitor should visit.
 type Place interface {
 	Accept(v Visitor) string
 }
 
-// Тип People, рeализует конкретного визитера
+// People implements the Visitor interface.
 type People struct {
 }
 
-// Визит в суши бар
-func (self *People) VisitSushiBar(p *SushiBar) string {
+// VisitSushiBar implements visit to SushiBar.
+func (v *People) VisitSushiBar(p *SushiBar) string {
 	return p.BuySushi()
 }
 
-// Визит в пиццирию
-func (self *People) VisitPizzeria(p *Pizzeria) string {
+// VisitPizzeria implements visit to Pizzeria.
+func (v *People) VisitPizzeria(p *Pizzeria) string {
 	return p.BuyPizza()
 }
 
-// Визит в бургерную
-func (self *People) VisitBurgerBar(p *BurgerBar) string {
+// VisitBurgerBar implements visit to BurgerBar.
+func (v *People) VisitBurgerBar(p *BurgerBar) string {
 	return p.BuyBurger()
 }
 
-// Тип City, рeализует структуру (коллекцию), в которой хранятся элементы для обхода
+// City implements a collection of places to visit.
 type City struct {
-	places []Place //места посещения
+	places []Place
 }
 
-// Добавляет заведение в коллекцию
-func (self *City) Add(p Place) {
-	self.places = append(self.places, p)
+// Add appends Place to the collection.
+func (c *City) Add(p Place) {
+	c.places = append(c.places, p)
 }
 
-// Посещаем все заведения в городе
-func (self *City) Accept(v Visitor) string {
+// Accept implements a visit to all places in the city.
+func (c *City) Accept(v Visitor) string {
 	var result string
-	for _, p := range self.places {
+	for _, p := range c.places {
 		result += p.Accept(v)
 	}
 	return result
 }
 
-// Тип SushiBar, рeализует елемент суши бар
+// SushiBar implements the Place interface.
 type SushiBar struct {
 }
 
-func (self *SushiBar) Accept(v Visitor) string {
-	return v.VisitSushiBar(self)
+// Accept implementation.
+func (s *SushiBar) Accept(v Visitor) string {
+	return v.VisitSushiBar(s)
 }
 
-// Купить суши
-func (self *SushiBar) BuySushi() string {
+// BuySushi implementation.
+func (s *SushiBar) BuySushi() string {
 	return "Buy sushi..."
 }
 
-// Тип Pizzeria, рeализует елемент пицерия
+// Pizzeria implements the Place interface.
 type Pizzeria struct {
 }
 
-func (self *Pizzeria) Accept(v Visitor) string {
-	return v.VisitPizzeria(self)
+// Accept implementation.
+func (p *Pizzeria) Accept(v Visitor) string {
+	return v.VisitPizzeria(p)
 }
 
-// Купить пиццу
-func (self *Pizzeria) BuyPizza() string {
+// BuyPizza implementation.
+func (p *Pizzeria) BuyPizza() string {
 	return "Buy pizza..."
 }
 
-// Тип BurgerBar, рeализует елемент бургерная
+// BurgerBar implements the Place interface.
 type BurgerBar struct {
 }
 
-func (self *BurgerBar) Accept(v Visitor) string {
-	return v.VisitBurgerBar(self)
+// Accept implementation.
+func (b *BurgerBar) Accept(v Visitor) string {
+	return v.VisitBurgerBar(b)
 }
 
-// Купить бургер
-func (self *BurgerBar) BuyBurger() string {
+// BuyBurger implementation.
+func (b *BurgerBar) BuyBurger() string {
 	return "Buy burger..."
 }

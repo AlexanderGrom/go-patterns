@@ -1,45 +1,38 @@
-// Паттерн Прототип (Prototype)
-//
-
+// Package prototype is an example of the Singleton Pattern.
 package prototype
 
-// Тип Prototype, описывает интерфейс,
-// который должен реализовать каждый конкретный продукт.
+// Prototyper provides a cloning interface.
 type Prototyper interface {
-	Clone() Prototyper // метод клонирования
-	GetName() string   // каждый продукт имеет имя
+	Clone() Prototyper
+	GetName() string
 }
 
-// Тип конкретного продукта "A"
+// ConcreteProductA implements product "A"
 type ConcreteProductA struct {
 	name string // Имя продукта
 }
 
-// Возвращает имя продукты
-func (self *ConcreteProductA) GetName() string {
-	return self.name
+// GetName returns product name
+func (p *ConcreteProductA) GetName() string {
+	return p.name
 }
 
-// Метод клонирования.
-// Каждый объект должен реализовать сам,
-// как он будет себя клонировать.
-func (self *ConcreteProductA) Clone() Prototyper {
-	return &ConcreteProductA{self.name}
+// Clone returns a cloned object.
+func (p *ConcreteProductA) Clone() Prototyper {
+	return &ConcreteProductA{p.name}
 }
 
-// Тип конкретного продукта "B"
+// ConcreteProductB implements product "B"
 type ConcreteProductB struct {
 	name string // Имя продукта
 }
 
-// Возвращает имя продукты
-func (self *ConcreteProductB) GetName() string {
-	return self.name
+// GetName returns product name
+func (p *ConcreteProductB) GetName() string {
+	return p.name
 }
 
-// Метод клонирования.
-// Каждый объект должен реализовать сам,
-// как он будет себя клонировать.
-func (self *ConcreteProductB) Clone() Prototyper {
-	return &ConcreteProductB{self.name}
+// Clone returns a cloned object.
+func (p *ConcreteProductB) Clone() Prototyper {
+	return &ConcreteProductB{p.name}
 }

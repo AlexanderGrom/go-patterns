@@ -1,67 +1,66 @@
-// Паттерн Команда (Command)
-//
-
+// Package command is an example of the Command Pattern.
 package command
 
-// Тип Command, описывает общий интерфейс для команд
+// Command provides a command interface.
 type Command interface {
 	Execute() string
 }
 
-// Тип ToggleOnCommand, реализует команду включения тумблера
+// ToggleOnCommand implements the Command interface.
 type ToggleOnCommand struct {
 	receiver *Receiver
 }
 
-// Выполнение команды получателем
-func (self *ToggleOnCommand) Execute() string {
-	return self.receiver.ToggleOn()
+// Execute command.
+func (c *ToggleOnCommand) Execute() string {
+	return c.receiver.ToggleOn()
 }
 
-// Тип ToggleOffCommand, реализует команду выключения тумблера
+// ToggleOffCommand implements the Command interface.
 type ToggleOffCommand struct {
 	receiver *Receiver
 }
 
-// Выполнение команды получателем
-func (self *ToggleOffCommand) Execute() string {
-	return self.receiver.ToggleOff()
+// Execute command.
+func (c *ToggleOffCommand) Execute() string {
+	return c.receiver.ToggleOff()
 }
 
-// Тип Receiver, реализует получателя команд
-// Реализует набор действие которые получатель должен
-// выполнять, взависимости от полученой команды
+// Receiver implementation.
 type Receiver struct {
 }
 
-// Действие на команду "поднять тумблер (ToggleOnCommand)"
-func (self *Receiver) ToggleOn() string {
+// ToggleOn implementation.
+func (r *Receiver) ToggleOn() string {
 	return "Toggle On"
 }
 
-// Действие на команду "опустить тумблер (ToggleOffCommand)"
-func (self *Receiver) ToggleOff() string {
+// ToggleOff implementation.
+func (r *Receiver) ToggleOff() string {
 	return "Toggle Off"
 }
 
-// Тип Invoker, реализует инициатора команды
+// Invoker implementation.
 type Invoker struct {
 	commands []Command
 }
 
-func (self *Invoker) StoreCommand(command Command) {
-	self.commands = append(self.commands, command)
+// StoreCommand adds command.
+func (i *Invoker) StoreCommand(command Command) {
+	i.commands = append(i.commands, command)
 }
 
-func (self *Invoker) UnStoreCommand() {
-	if len(self.commands) != 0 {
-		self.commands = self.commands[:len(self.commands)-1]
+// UnStoreCommand removes command.
+func (i *Invoker) UnStoreCommand() {
+	if len(i.commands) != 0 {
+		i.commands = i.commands[:len(i.commands)-1]
 	}
 }
 
-func (self *Invoker) Execute() string {
+// Execute all commands.
+func (i *Invoker) Execute() string {
 	var result string
-	for _, command := range self.commands {
+	for _, command := range i.commands {
 		result += command.Execute() + "\n"
 	}
 	return result

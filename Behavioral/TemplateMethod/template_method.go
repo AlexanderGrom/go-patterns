@@ -1,56 +1,53 @@
-// Паттерн Шаблонный метод (Template Method)
-//
-// На самом деле этот шаблон основывается на Абстрактном Классе и Полиморфизме.
-// Но т.к. ничего этого в Go нет, будет применено встраивание.
-// Хотя по правилам, это паттерн уровня класса.
-
+// Package template_method is an example of the Template Method Pattern.
+// In fact, this pattern is based on Abstract Class and Polymorphism.
+// But there’s nothing like that in Go, so the composition will be applied.
 package template_method
 
-// Тип QuotesInterface, описывает интерфейс установки разных кавычек
+// QuotesInterface provides an interface for setting different quotes.
 type QuotesInterface interface {
 	Open() string
 	Close() string
 }
 
-// Тип Quotes, рeализует Template Method
+// Quotes implements a Template Method.
 type Quotes struct {
 	QuotesInterface
 }
 
-// Template Method
-func (self *Quotes) Quotes(str string) string {
-	return self.Open() + str + self.Close()
+// Quotes is the Template Method.
+func (q *Quotes) Quotes(str string) string {
+	return q.Open() + str + q.Close()
 }
 
-// Конструктор
+// NewQuotes is constructor.
 func NewQuotes(qt QuotesInterface) *Quotes {
 	return &Quotes{qt}
 }
 
-// Тип FrenchQuotes, рeализует обрамление строки Французскими кавычками (Ёлочками)
+// FrenchQuotes implements wrapping the string in French quotes.
 type FrenchQuotes struct {
 }
 
-// Установка открывающей кавычки
-func (self *FrenchQuotes) Open() string {
+// Open sets opening quotes.
+func (q *FrenchQuotes) Open() string {
 	return "«"
 }
 
-// Установка закрывающей кавычки
-func (self *FrenchQuotes) Close() string {
+// Close sets closing quotes.
+func (q *FrenchQuotes) Close() string {
 	return "»"
 }
 
-// Тип GermanQuotes, рeализует обрамление строки Немецкими кавычками (Лапками)
+// GermanQuotes implements wrapping the string in German quotes.
 type GermanQuotes struct {
 }
 
-// Установка открывающей кавычки
-func (self *GermanQuotes) Open() string {
+// Open sets opening quotes.
+func (q *GermanQuotes) Open() string {
 	return "„"
 }
 
-// Установка закрывающей кавычки
-func (self *GermanQuotes) Close() string {
+// Close sets closing quotes.
+func (q *GermanQuotes) Close() string {
 	return "“"
 }

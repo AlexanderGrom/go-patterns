@@ -7,8 +7,8 @@ import (
 func TestState(t *testing.T) {
 
 	expect := "Vrrr... Brrr... Vrrr..." +
-			  "Vrrr... Brrr... Vrrr..." +
-			  "Белые розы, Белые розы. Беззащитны шипы..."
+		"Vrrr... Brrr... Vrrr..." +
+		"Белые розы, Белые розы. Беззащитны шипы..."
 
 	mobile := NewMobileAlert()
 

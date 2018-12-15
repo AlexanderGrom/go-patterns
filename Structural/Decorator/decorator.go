@@ -1,28 +1,26 @@
-// Паттерн Декоратор (Decorator)
-//
-
+// Package decorator is an example of the Decorator Pattern.
 package decorator
 
-// Тип Component, описывает интерфейс для декоратора и компонента
+// Component provides an interface for a decorator and component.
 type Component interface {
 	Operation() string
 }
 
-// Тип ConcreteComponent, реализует компонент
+// ConcreteComponent implements a component.
 type ConcreteComponent struct {
 }
 
-// Операция, которую делает компонент сам по себе
-func (self *ConcreteComponent) Operation() string {
+// Operation implementation.
+func (c *ConcreteComponent) Operation() string {
 	return "I am component!"
 }
 
-// Тип ConcreteDecorator, реализует декоратор
+// ConcreteDecorator implements a decorator.
 type ConcreteDecorator struct {
 	component Component
 }
 
-// Декоратор оборачивает операцию компонента в тег <strong>
-func (self *ConcreteDecorator) Operation() string {
-	return "<strong>" + self.component.Operation() + "</strong>"
+// Operation wraps operation of component
+func (d *ConcreteDecorator) Operation() string {
+	return "<strong>" + d.component.Operation() + "</strong>"
 }

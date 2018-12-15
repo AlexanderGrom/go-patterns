@@ -20,5 +20,4 @@ func TestFactoryMethod(t *testing.T) {
 			t.Errorf("Expect action to %s, but %s.\n", assert[i], action)
 		}
 	}
-
 }

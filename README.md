@@ -12,7 +12,7 @@
 Вы можете скачать этот репозиторий и запустить тесты
 
 ```bash
-$ go get github.com/AlexanderGrom/go-patterns
+$ go get github.com/alexandergrom/go-patterns
 ```
 
 ## Паттерны

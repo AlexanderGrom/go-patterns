@@ -1,29 +1,26 @@
-// Паттерн Адаптер (Adapter)
-//
-
+// Package adapter is an example of the Adapter Pattern.
 package adapter
 
-// Тип Target, описывает интерфейс с которым наша система хотела бы работать
+// Target provides an interface with which the system should work.
 type Target interface {
 	Request() string
 }
 
-// Тип Adaptee, реализует ту систему, которую нужно адаптировать.
+// Adaptee implements system to be adapted.
 type Adaptee struct {
 }
 
-// Специфический Request
-// Будем его адаптировать
-func (self *Adaptee) SpecificRequest() string {
+// SpecificRequest implementation.
+func (a *Adaptee) SpecificRequest() string {
 	return "Request"
 }
 
-// Тип Adapter, реализует адаптер
+// Adapter implements Target interface and is an adapter.
 type Adapter struct {
-	*Adaptee // Для адаптации используем встраивание
+	*Adaptee
 }
 
-// Адаптирующий метод
-func (self *Adapter) Request() string {
-	return self.SpecificRequest()
+// Request is an adaptive method.
+func (a *Adapter) Request() string {
+	return a.SpecificRequest()
 }
