@@ -6,11 +6,11 @@ import (
 
 func TestBuilder(t *testing.T) {
 
-	expect := "<header>Header</header>\n" +
-		"<article>Content</article>\n" +
-		"<footer>Footer</footer>\n"
+	expect := "<header>Header</header>" +
+		"<article>Body</article>" +
+		"<footer>Footer</footer>"
 
-	product := &Product{}
+	product := new(Product)
 
 	director := Director{&ConcreteBuilder{product}}
 	director.Construct()

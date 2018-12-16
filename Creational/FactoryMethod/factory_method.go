@@ -16,12 +16,17 @@ type Producter interface {
 	Use() string // Every product should be can be used
 }
 
-// ConcreteCreator implements Creater interface.
-type ConcreteCreator struct {
+// ConcreteCreater implements Creater interface.
+type ConcreteCreater struct {
+}
+
+// NewCreater is the ConcreteCreater constructor.
+func NewCreater() Creater {
+	return &ConcreteCreater{}
 }
 
 // CreateProduct is a Factory Method
-func (p *ConcreteCreator) CreateProduct(action string) Producter {
+func (p *ConcreteCreater) CreateProduct(action string) Producter {
 	var product Producter
 
 	switch action {

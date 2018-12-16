@@ -2,13 +2,13 @@ package observer
 
 func ExampleObserver() {
 
-	publisher := &ConcretePublisher{}
+	publisher := NewPublisher()
 
 	publisher.Attach(&ConcreteObserver{})
 	publisher.Attach(&ConcreteObserver{})
 	publisher.Attach(&ConcreteObserver{})
 
-	publisher.State = "New State..."
+	publisher.SetState("New State...")
 
 	publisher.Notify()
 }

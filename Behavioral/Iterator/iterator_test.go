@@ -6,7 +6,7 @@ import (
 
 func TestIterator(t *testing.T) {
 
-	shelf := &BookShelf{}
+	shelf := new(BookShelf)
 
 	books := []string{"A", "B", "C", "D", "E", "F"}
 

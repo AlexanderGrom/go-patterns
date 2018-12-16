@@ -8,7 +8,7 @@ func TestFactoryMethod(t *testing.T) {
 
 	assert := []string{"A", "B", "C"}
 
-	factory := new(ConcreteCreator)
+	factory := NewCreater()
 	products := []Producter{
 		factory.CreateProduct("A"),
 		factory.CreateProduct("B"),

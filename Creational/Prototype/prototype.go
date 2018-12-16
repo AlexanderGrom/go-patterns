@@ -7,32 +7,24 @@ type Prototyper interface {
 	GetName() string
 }
 
-// ConcreteProductA implements product "A"
-type ConcreteProductA struct {
+// ConcreteProduct implements product "A"
+type ConcreteProduct struct {
 	name string // Имя продукта
 }
 
+// NewConcreteProduct is the Prototyper constructor.
+func NewConcreteProduct(name string) Prototyper {
+	return &ConcreteProduct{
+		name: name,
+	}
+}
+
 // GetName returns product name
-func (p *ConcreteProductA) GetName() string {
+func (p *ConcreteProduct) GetName() string {
 	return p.name
 }
 
 // Clone returns a cloned object.
-func (p *ConcreteProductA) Clone() Prototyper {
-	return &ConcreteProductA{p.name}
-}
-
-// ConcreteProductB implements product "B"
-type ConcreteProductB struct {
-	name string // Имя продукта
-}
-
-// GetName returns product name
-func (p *ConcreteProductB) GetName() string {
-	return p.name
-}
-
-// Clone returns a cloned object.
-func (p *ConcreteProductB) Clone() Prototyper {
-	return &ConcreteProductB{p.name}
+func (p *ConcreteProduct) Clone() Prototyper {
+	return &ConcreteProduct{p.name}
 }

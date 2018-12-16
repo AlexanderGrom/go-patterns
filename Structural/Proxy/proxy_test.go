@@ -8,7 +8,7 @@ func TestProxy(t *testing.T) {
 
 	expect := "<strong>I’ll be back!</strong>"
 
-	proxy := &Proxy{}
+	proxy := new(Proxy)
 
 	result := proxy.Send()
 

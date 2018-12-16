@@ -10,7 +10,7 @@ func TestStrategy(t *testing.T) {
 	data1 := []int{8, 2, 6, 7, 1, 3, 9, 5, 4}
 	data2 := []int{8, 2, 6, 7, 1, 3, 9, 5, 4}
 
-	ctx := &Context{}
+	ctx := new(Context)
 
 	ctx.Algorithm(&BubbleSort{})
 

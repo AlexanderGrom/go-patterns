@@ -23,13 +23,18 @@ type AbstractBottle interface {
 type CocaColaFactory struct {
 }
 
+// NewCocaColaFactory is the CocaColaFactory constructor.
+func NewCocaColaFactory() AbstractFactory {
+	return &CocaColaFactory{}
+}
+
 // CreateWater implementation.
-func (f *CocaColaFactory) CreateWater(volume float64) *CocaColaWater {
+func (f *CocaColaFactory) CreateWater(volume float64) AbstractWater {
 	return &CocaColaWater{volume: volume}
 }
 
 // CreateBottle implementation.
-func (f *CocaColaFactory) CreateBottle(volume float64) *CocaColaBottle {
+func (f *CocaColaFactory) CreateBottle(volume float64) AbstractBottle {
 	return &CocaColaBottle{volume: volume}
 }
 
@@ -45,12 +50,12 @@ func (w *CocaColaWater) GetVolume() float64 {
 
 // CocaColaBottle implements AbstractBottle.
 type CocaColaBottle struct {
-	water  *CocaColaWater // Bottle must contain a drink.
-	volume float64        // Volume of bottle.
+	water  AbstractWater // Bottle must contain a drink.
+	volume float64       // Volume of bottle.
 }
 
 // PourWater pours water into a bottle.
-func (b *CocaColaBottle) PourWater(water *CocaColaWater) {
+func (b *CocaColaBottle) PourWater(water AbstractWater) {
 	b.water = water
 }
 

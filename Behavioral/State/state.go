@@ -21,7 +21,7 @@ func (a *MobileAlert) SetState(state MobileAlertStater) {
 	a.state = state
 }
 
-// NewMobileAlert constructor.
+// NewMobileAlert is the MobileAlert constructor.
 func NewMobileAlert() *MobileAlert {
 	return &MobileAlert{state: &MobileAlertVibration{}}
 }

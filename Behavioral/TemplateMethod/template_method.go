@@ -19,7 +19,7 @@ func (q *Quotes) Quotes(str string) string {
 	return q.Open() + str + q.Close()
 }
 
-// NewQuotes is constructor.
+// NewQuotes is the Quotes constructor.
 func NewQuotes(qt QuotesInterface) *Quotes {
 	return &Quotes{qt}
 }

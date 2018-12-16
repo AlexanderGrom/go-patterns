@@ -4,7 +4,7 @@ package builder
 // Вuilder provides a builder interface.
 type Вuilder interface {
 	MakeHeader(str string)
-	MakeContent(str string)
+	MakeBody(str string)
 	MakeFooter(str string)
 }
 
@@ -16,7 +16,7 @@ type Director struct {
 // Construct tells the builder what to do and in what order.
 func (d *Director) Construct() {
 	d.builder.MakeHeader("Header")
-	d.builder.MakeContent("Content")
+	d.builder.MakeBody("Body")
 	d.builder.MakeFooter("Footer")
 }
 
@@ -27,31 +27,25 @@ type ConcreteBuilder struct {
 
 // MakeHeader builds a header of document..
 func (b *ConcreteBuilder) MakeHeader(str string) {
-	b.product.Header = "<header>" + str + "</header>\n"
+	b.product.Content += "<header>" + str + "</header>"
 }
 
-// MakeContent builds a content of document.
-func (b *ConcreteBuilder) MakeContent(str string) {
-	b.product.Content = "<article>" + str + "</article>\n"
+// MakeBody builds a body of document.
+func (b *ConcreteBuilder) MakeBody(str string) {
+	b.product.Content += "<article>" + str + "</article>"
 }
 
 // MakeFooter builds a footer of document.
 func (b *ConcreteBuilder) MakeFooter(str string) {
-	b.product.Footer = "<footer>" + str + "</footer>\n"
+	b.product.Content += "<footer>" + str + "</footer>"
 }
 
 // Product implementation.
 type Product struct {
-	Header  string
 	Content string
-	Footer  string
 }
 
 // Show returns product.
 func (p *Product) Show() string {
-	var result string
-	result += p.Header
-	result += p.Content
-	result += p.Footer
-	return result
+	return p.Content
 }

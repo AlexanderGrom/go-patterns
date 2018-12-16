@@ -6,7 +6,7 @@ import (
 
 func TestAdapter(t *testing.T) {
 
-	adapter := &Adapter{&Adaptee{}}
+	adapter := NewAdapter(&Adaptee{})
 
 	req := adapter.Request()
 

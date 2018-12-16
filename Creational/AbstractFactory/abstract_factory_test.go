@@ -6,7 +6,7 @@ import (
 
 func TestAbstractFactory(t *testing.T) {
 
-	cocacolaFactory := &CocaColaFactory{}
+	cocacolaFactory := NewCocaColaFactory()
 
 	cocacolaWater := cocacolaFactory.CreateWater(2.5)
 	cocacolaBottle := cocacolaFactory.CreateBottle(2.5)

@@ -8,7 +8,7 @@ func TestFlyweight(t *testing.T) {
 
 	expect := "My name: Jeck"
 
-	factory := &FlyweightFactory{}
+	factory := new(FlyweightFactory)
 
 	flyweight1 := factory.GetFlyweight(1)
 	flyweight2 := factory.GetFlyweight(2)

@@ -8,7 +8,7 @@ func TestVisitor(t *testing.T) {
 
 	expect := "Buy sushi...Buy pizza...Buy burger..."
 
-	city := &City{}
+	city := new(City)
 
 	city.Add(&SushiBar{})
 	city.Add(&Pizzeria{})

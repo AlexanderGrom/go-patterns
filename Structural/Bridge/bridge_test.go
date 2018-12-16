@@ -8,7 +8,7 @@ func TestBridge(t *testing.T) {
 
 	expect := "SssuuuuZzzuuuuKkiiiii"
 
-	car := &Car{&EngineSuzuki{}}
+	car := NewCar(&EngineSuzuki{})
 
 	sound := car.Rase()
 

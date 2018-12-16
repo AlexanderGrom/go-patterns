@@ -10,6 +10,11 @@ type Target interface {
 type Adaptee struct {
 }
 
+// NewAdapter is the Adapter constructor.
+func NewAdapter(adaptee *Adaptee) Target {
+	return &Adapter{adaptee}
+}
+
 // SpecificRequest implementation.
 func (a *Adaptee) SpecificRequest() string {
 	return "Request"
