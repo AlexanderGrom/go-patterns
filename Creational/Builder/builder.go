@@ -1,8 +1,8 @@
 // Package builder is an example of the Builder Pattern.
 package builder
 
-// Вuilder provides a builder interface.
-type Вuilder interface {
+// Builder provides a builder interface.
+type Builder interface {
 	MakeHeader(str string)
 	MakeBody(str string)
 	MakeFooter(str string)
@@ -10,7 +10,7 @@ type Вuilder interface {
 
 // Director implements a manager
 type Director struct {
-	builder Вuilder
+	builder Builder
 }
 
 // Construct tells the builder what to do and in what order.
