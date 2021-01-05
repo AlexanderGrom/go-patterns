@@ -1,41 +1,49 @@
-// Package factory_method is an example of the Factory Method Pattern.
+// Package factory_method is an example of the Factory Method pattern.
 package factory_method
 
 import (
 	"log"
 )
 
-// Creater provides a factory interface.
-type Creater interface {
-	CreateProduct(action string) Producter // Factory Method
+// action helps clients to find out available actions.
+type action string
+
+const (
+	A action = "A"
+	B action = "B"
+	C action = "C"
+)
+
+// Creator provides a factory interface.
+type Creator interface {
+	CreateProduct(action action) Product // Factory Method
 }
 
-// Producter provides a product interface.
+// Product provides a product interface.
 // All products returned by factory must provide a single interface.
-type Producter interface {
-	Use() string // Every product should be can be used
+type Product interface {
+	Use() string // Every product should be usable
 }
 
-// ConcreteCreater implements Creater interface.
-type ConcreteCreater struct {
+// ConcreteCreator implements Creator interface.
+type ConcreteCreator struct{}
+
+// NewCreator is the ConcreteCreator constructor.
+func NewCreator() Creator {
+	return &ConcreteCreator{}
 }
 
-// NewCreater is the ConcreteCreater constructor.
-func NewCreater() Creater {
-	return &ConcreteCreater{}
-}
-
-// CreateProduct is a Factory Method
-func (p *ConcreteCreater) CreateProduct(action string) Producter {
-	var product Producter
+// CreateProduct is a Factory Method.
+func (p *ConcreteCreator) CreateProduct(action action) Product {
+	var product Product
 
 	switch action {
-	case "A":
-		product = &ConcreteProductA{action}
-	case "B":
-		product = &ConcreteProductB{action}
-	case "C":
-		product = &ConcreteProductC{action}
+	case A:
+		product = &ConcreteProductA{string(action)}
+	case B:
+		product = &ConcreteProductB{string(action)}
+	case C:
+		product = &ConcreteProductC{string(action)}
 	default:
 		log.Fatalln("Unknown Action")
 	}
@@ -43,32 +51,32 @@ func (p *ConcreteCreater) CreateProduct(action string) Producter {
 	return product
 }
 
-// ConcreteProductA implements product "A"
+// ConcreteProductA implements product "A".
 type ConcreteProductA struct {
 	action string
 }
 
-// Use returns product action
+// Use returns product action.
 func (p *ConcreteProductA) Use() string {
 	return p.action
 }
 
-// ConcreteProductB implements product "B"
+// ConcreteProductB implements product "B".
 type ConcreteProductB struct {
 	action string
 }
 
-// Use returns product action
+// Use returns product action.
 func (p *ConcreteProductB) Use() string {
 	return p.action
 }
 
-// ConcreteProductC implements product "C"
+// ConcreteProductC implements product "C".
 type ConcreteProductC struct {
 	action string
 }
 
-// Use returns product action
+// Use returns product action.
 func (p *ConcreteProductC) Use() string {
 	return p.action
 }

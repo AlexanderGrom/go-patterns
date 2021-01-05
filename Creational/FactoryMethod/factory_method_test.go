@@ -8,11 +8,11 @@ func TestFactoryMethod(t *testing.T) {
 
 	assert := []string{"A", "B", "C"}
 
-	factory := NewCreater()
-	products := []Producter{
-		factory.CreateProduct("A"),
-		factory.CreateProduct("B"),
-		factory.CreateProduct("C"),
+	factory := NewCreator()
+	products := []Product{
+		factory.CreateProduct(A),
+		factory.CreateProduct(B),
+		factory.CreateProduct(C),
 	}
 
 	for i, product := range products {
