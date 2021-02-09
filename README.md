@@ -25,7 +25,7 @@ $ go get github.com/alexandergrom/go-patterns
 * [Прототип (Prototype)](Creational/Prototype)
 * [Одиночка (Singleton)](Creational/Singleton)
 
-### [Стуктурные (Structural)](Structural)
+### [Структурные (Structural)](Structural)
 
 * [Адаптер (Adapter)](Structural/Adapter)
 * [Мост (Bridge)](Structural/Bridge)
